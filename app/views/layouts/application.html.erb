@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MiniTwitter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<h1>Bienvenidos al Mini-Twitter</h1>
+<p class="notice" style="color: green"><%= notice %></p>
+<p class="alert" style="color: red"><%= alert %></p>
+ 
+ <% if user_signed_in? %>
+     <%= link_to('Nuevo Comentario', new_comment_path) %>
+
+<% else %>
+    <p>Registrate</p>
+<% end %>
+  <%= yield %>
+
+ <% if user_signed_in? %>
+  
+  <%= link_to('Edit registration', edit_user_registration_path) %><br>
+  
+<% else %>
+  
+  <%= link_to('Registro', new_user_registration_path)  %><br>
+  
+   
+<% end %>
+    
+    
+    <% if user_signed_in? %>
+  
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>     <br>   
+  
+<% else %>
+  
+  <%= link_to('Login', new_user_session_path)  %>  <br>
+  
+<% end %>  
+  
+</body>
+</html>
